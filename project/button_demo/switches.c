@@ -2,25 +2,26 @@
 #include "switches.h"
 #include "led.h"
 
-char switch_state_down, switch_state_changed; /* effectively boolean */
+char switch_state_down1, switch_state_down2, switch_state_down3, switch_state_down4;
+char switch_state_changed; /* effectively boolean */
 
 static char 
 switch_update_interrupt_sense()
 {
-  char p1val = P1IN;
+  char p2val = P2IN;
   /* update switch interrupt to detect changes from current buttons */
-  P1IES |= (p1val & SWITCHES);	/* if switch up, sense down */
-  P1IES &= (p1val | ~SWITCHES);	/* if switch down, sense up */
-  return p1val;
+  P2IES |= (p2val & SWITCHES);	/* if switch up, sense down */
+  P2IES &= (p2val | ~SWITCHES);	/* if switch down, sense up */
+  return p2val;
 }
 
 void 
 switch_init()			/* setup switch */
 {  
-  P1REN |= SWITCHES;		/* enables resistors for switches */
-  P1IE |= SWITCHES;		/* enable interrupts from switches */
-  P1OUT |= SWITCHES;		/* pull-ups for switches */
-  P1DIR &= ~SWITCHES;		/* set switches' bits for input */
+  P2REN |= SWITCHES;		/* enables resistors for switches */
+  P2IE |= SWITCHES;		/* enable interrupts from switches */
+  P2OUT |= SWITCHES;		/* pull-ups for switches */
+  P2DIR &= ~SWITCHES;		/* set switches' bits for input */
   switch_update_interrupt_sense();
   led_update();
 }
@@ -28,8 +29,26 @@ switch_init()			/* setup switch */
 void
 switch_interrupt_handler()
 {
-  char p1val = switch_update_interrupt_sense();
-  switch_state_down = (p1val & SW1) ? 0 : 1; /* 0 when SW1 is up */
-  switch_state_changed = 1;
-  led_update();
-}
+  char p2val = switch_update_interrupt_sense();
+  switch_state_down1 = (p2val & SW1) ? 0 : 1; /* 0 when SW1 is up */
+  switch_state_down2 = (p2val & SW2) ? 0 : 1;
+  switch_state_down3 = (p2val & SW3) ? 0 : 1;
+  switch_state_down4 = (p2val & SW4) ? 0 : 1;
+
+
+  //switch_state_changed = 1;
+  //led_update();
+  if(switch_state_down1 = 0){
+    switch_state_changed = 1;
+  }
+  if(switch_state_down2 = 0){
+    switch_state_changed = 2;
+  }
+  if(switch_state_down3 = 0){
+    switch_state_changed = 3;
+  }
+  if(switch_state_down4 = 0){
+    switch_state_changed = 4;
+  }
+
+}//end switch_interrupt_handler
