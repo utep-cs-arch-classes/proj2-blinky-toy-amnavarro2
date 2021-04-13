@@ -21,31 +21,30 @@ void led_update(){
   char ledFlags = 0;
 
   //code from button_demo from led.c
+  //only turns on the green
   
-  //this won't work cause im not using switch_state_down
   /*if (switch_state_changed) {
   char ledFlags = 0; //by default, no LEDs on 
 
-  ledFlags |= switch_state_down ? LED_GREEN : 0;
-  ledFlags |= switch_state_down ? 0 : LED_RED;
+  ledFlags |= switch_state_down1 ? LED_GREEN : 0;
+  ledFlags |= switch_state_down1 ? 0 : LED_RED;
 
   P1OUT &= (0xff - LEDS) | ledFlags; // clear bits for off leds
   P1OUT |= ledFlags;         // set bits for on leds
   }//end if
 
-  switch_state_changed = 0;*/
-
+  switch_state_changed = 0;
+  */
   
-  //code from the blink_demo led.c
-   if(led_changed){
+  //code from the blink_demo led.c, all the leds are off
+  if(led_changed){
      ledFlags = greenVal[green_on] | redVal[red_on];
 
     P1OUT &=(0Xff^LEDS) |ledFlags;
     P1OUT |= ledFlags;
     led_changed = 0;
 
-  }//end 1st if
-
+    }//end 1st if
 
 
    
