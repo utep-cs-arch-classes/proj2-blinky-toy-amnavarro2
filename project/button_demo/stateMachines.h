@@ -16,5 +16,5 @@ void green_dim_25();
 void state_dimming();
 void change_states();
 
-extern int bright_state;
+//extern int bright_state;
 #endif // included
