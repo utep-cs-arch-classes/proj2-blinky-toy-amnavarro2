@@ -2,7 +2,7 @@
 #include "stateMachines.h"
 #include "led.h"
 
-//static char bright_state = 0;
+static char bright_state = 0;
 
 char toggle_red()		/* always toggle! */
 {
