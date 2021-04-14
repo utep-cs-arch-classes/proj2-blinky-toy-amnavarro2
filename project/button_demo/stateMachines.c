@@ -1,8 +1,10 @@
 #include <msp430.h>
 #include "stateMachines.h"
 #include "led.h"
+#include "buzzer.h"
+#include "switches.h"
 
-static char bright_state = 0;
+//static int switch_state_val= 0;
 
 char toggle_red()		/* always toggle! */
 {
@@ -31,7 +33,7 @@ void toggle_red_on(){
 
 void toggle_red_off(){
   red_on = 0;
-  
+    
   led_changed = 1;
   led_update();
 }//end
@@ -92,6 +94,10 @@ void red_dim(){
     state = 2;
     break;
   case 2:
+    red_on = 1;
+    state = 3;
+    break;
+  case 3:
     red_on = 0;
     state = 0;
     break;
@@ -115,10 +121,13 @@ void red_dim(){
       state = 2;
       break;
     case 2:
+      green_on = 1;
+      state = 3;
+      break;
+    case 3:
       green_on = 0;
       state = 0;
       break;
-
     }//end switch   
   led_changed = 1;
   led_update();
@@ -177,33 +186,58 @@ void green_dim_25(){
   led_update();
 }//end green_dim_25
 
-//assign instructions for what happens in each state
-void state_dimming(){
-  //static char state = 0;
 
-  switch(bright_state){
+void switch_state_adv(int state){
+  switch(state){
   case 0:
     toggle_red_on();
     toggle_green_on();
-    //state = 1;
+    buzzer_set_period(1300);
     break;
   case 1:
     red_dim();
     green_dim();
-    //state = 2;
+    buzzer_set_period(700);
     break;
   case 2:
     red_dim_25();
     green_dim_25();
-    //state = 0;
+    buzzer_set_period(500);
     break;
   case 3:
     toggle_red_off();
-    toggle_green_on();
+    toggle_green_off();
+    buzzer_set_period(0);
     break;
   }//end switch
   led_changed = 1;
   led_update();
+
+}//end switch_state
+
+
+
+/*
+//assign instructions for what happens in each state
+void state_dimming(){
+  
+  switch(bright_state){
+  case 0:
+    toggle_red_on();
+    toggle_green_on();
+    break;
+  case 1:
+    red_dim();
+    green_dim();
+    break;
+  case 2:
+    red_dim_25();
+    green_dim_25();
+    break;
+  case 3:
+    toggle_red_off();
+    toggle_green_off();
+  }//end switch
 }//end state_dimming
 
 //access the states from the method above each time we move states.
@@ -224,4 +258,4 @@ void change_states(){
   }//end switch
   led_update();
 }//end change_states
-
+*/
