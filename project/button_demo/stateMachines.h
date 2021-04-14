@@ -13,8 +13,8 @@ void green_dim();
 void red_dim_25();
 void green_dim_25();
 
+void switch_state_adv(int);
+
 void state_dimming();
 void change_states();
-
-//extern int bright_state;
 #endif // included

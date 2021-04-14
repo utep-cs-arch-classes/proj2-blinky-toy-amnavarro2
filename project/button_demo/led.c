@@ -1,6 +1,7 @@
 #include <msp430.h>
 #include "led.h"
 #include "switches.h"
+#include "stateMachines.h"
 
 //assigned new variables to be able to use the code from blink_demo
 unsigned char green_on = 0, red_on = 0;
@@ -36,7 +37,7 @@ void led_update(){
   switch_state_changed = 0;
   */
   
-  //code from the blink_demo led.c, all the leds are off
+  //code from the blink_demo led.c, all the switches do something different to the leds.
   if(led_changed){
      char ledFlags = greenVal[green_on] | redVal[red_on];
 
@@ -70,7 +71,6 @@ void led_update(){
     ledFlags |= switch_state_down3 ? LED_GREEN: 0;
     ledFlags |= switch_state_down3 ? 0 : LED_RED;
     switch_state_changed = 0;
-
   }//end 3rd if
 
   if(switch_state_down4){

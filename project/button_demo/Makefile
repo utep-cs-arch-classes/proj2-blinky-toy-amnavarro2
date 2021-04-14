@@ -11,7 +11,7 @@ AS              = msp430-elf-as
 all: button.elf 
 
 #additional rules for files
-button.elf: ${COMMON_OBJECTS} p1_interrupt_handler.o led.o switches.o buttonMain.o wdInterruptHandler.o stateMachines.o  ../lib/libTimer.a 
+button.elf: ${COMMON_OBJECTS} p1_interrupt_handler.o led.o switches.o buttonMain.o buzzer.o wdInterruptHandler.o stateMachines.o  ../lib/libTimer.a 
 	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^
 
 load: button.elf
@@ -30,4 +30,6 @@ stateMachines.o: stateMachines.c stateMachines.h
 
 p1_interrupt_handler.o: p1_interrupt_handler.c
 
-wdInterruptHandler.o: wdInterruptHandler.c led.h switches.h stateMachines.h 
+buzzer.o: buzzer.c buzzer.h
+
+wdInterruptHandler.o: wdInterruptHandler.c buzzer.h led.h switches.h stateMachines.h 
