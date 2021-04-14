@@ -1,11 +1,13 @@
 #include <msp430.h>
 #include "switches.h"
 #include "led.h"
+#include "stateMachines.h"
 
 char switch_state_down1, switch_state_down2, switch_state_down3, switch_state_down4;
 char switch_state_changed; /* effectively boolean */
+static char state = 0;
 
-static char 
+static char
 switch_update_interrupt_sense()
 {
   char p2val = P2IN;
@@ -30,28 +32,48 @@ void
 switch_interrupt_handler()
 {
   char p2val = switch_update_interrupt_sense();
-  switch_state_down1 = (p2val & SW1) ? 0 : 1; /* 0 when SW1 is up */
+  
+  if(p2val & SW1 ? 0 : 1){
+    switch_state_adv(0);
+  }
+  if(p2val & SW2 ? 0 : 1){
+    switch_state_adv(1);
+  }
+  if(p2val & SW3 ? 0 : 1){
+    switch_state_adv(2);
+  }
+
+  if(p2val & SW4 ? 0 : 1){
+    switch_state_adv(3);
+  }
+  
+
+  
+  //this works to press the buttons
+  /*  switch_state_down1 = (p2val & SW1) ? 0 : 1;
   switch_state_down2 = (p2val & SW2) ? 0 : 1;
   switch_state_down3 = (p2val & SW3) ? 0 : 1;
   switch_state_down4 = (p2val & SW4) ? 0 : 1;
   switch_state_changed = 1;
   led_update();
-
+  */
+  
   //this prevented me from accessing the buttons.
   //switch_state_changed = 1;
   //led_update();
   /*
-  if(switch_state_down1 = 0){
-    switch_state_changed = 1;
+  if(switch_state_down1){
+   state = 1;
   }
   if(switch_state_down2 = 0){
-    switch_state_changed = 2;
+    state = 2;
   }
   if(switch_state_down3 = 0){
-    switch_state_changed = 3;
+   state = 3;
   }
   if(switch_state_down4 = 0){
-    switch_state_changed = 4;
+    state = 4;
   }
+  switch_state_changed = 1;
   */
 }//end switch_interrupt_handler
