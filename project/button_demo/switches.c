@@ -34,10 +34,13 @@ switch_interrupt_handler()
   switch_state_down2 = (p2val & SW2) ? 0 : 1;
   switch_state_down3 = (p2val & SW3) ? 0 : 1;
   switch_state_down4 = (p2val & SW4) ? 0 : 1;
+  switch_state_changed = 1;
+  led_update();
 
-
+  //this prevented me from accessing the buttons.
   //switch_state_changed = 1;
   //led_update();
+  /*
   if(switch_state_down1 = 0){
     switch_state_changed = 1;
   }
@@ -50,5 +53,5 @@ switch_interrupt_handler()
   if(switch_state_down4 = 0){
     switch_state_changed = 4;
   }
-
+  */
 }//end switch_interrupt_handler
