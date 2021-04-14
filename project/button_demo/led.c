@@ -18,7 +18,7 @@ void led_init()
 }//end led_init
 
 void led_update(){
-  char ledFlags = 0;
+  //char ledFlags = 0;
 
   //code from button_demo from led.c
   //only turns on the green
@@ -38,7 +38,7 @@ void led_update(){
   
   //code from the blink_demo led.c, all the leds are off
   if(led_changed){
-     ledFlags = greenVal[green_on] | redVal[red_on];
+     char ledFlags = greenVal[green_on] | redVal[red_on];
 
     P1OUT &=(0Xff^LEDS) |ledFlags;
     P1OUT |= ledFlags;
@@ -47,29 +47,40 @@ void led_update(){
     }//end 1st if
 
 
-   
-  // This code below is to s
+     
+  if(switch_state_changed){
+    char ledFlags = 0;
+    if(switch_state_down1){
+      ledFlags |= switch_state_down1 ? LED_GREEN : 0;
+      ledFlags |= switch_state_down1 ? LED_RED : 0;
+      switch_state_changed = 0;
+    }//end if
+    // switch_state_changed = 0;
 
-
-   
-  /*if(switch_state_down1 && switch_state_changed == 2){
-    ledFlags |= switch_state_down2 ? LED_GREEN : 0;
-    ledFlags |= switch_state_down2 ? 0 : LED_RED;
-
-    P1OUT &= (0xff^LEDS) | ledFlags;
-    P1OUT |= ledFlags;
+    
+  if(switch_state_down2){
+    ledFlags |= switch_state_down2 ? LED_RED : 0;
+    ledFlags |= switch_state_down2 ? 0:0;
+    switch_state_changed = 0;
+    //P1OUT &= (0xff^LEDS) |ledFlags;
+    //P1OUT |=ledFlags;
   }//end 2nd if
 
-  if(switch_state_down1 && switch_state_changed == 3){
-    ledFlags |= switch_state_down3 ? 0: LED_GREEN;
+  if(switch_state_down3){
+    ledFlags |= switch_state_down3 ? LED_GREEN: 0;
+    ledFlags |= switch_state_down3 ? 0 : LED_RED;
+    switch_state_changed = 0;
 
-    P1OUT &= (0xff^LEDS) |ledFlags;
-    P1OUT |=ledFlags;
   }//end 3rd if
-  //switch_state_changed = 0;
-  */
 
-
-   
+  if(switch_state_down4){
+    ledFlags |= switch_state_down4 ? 0: 0;
+    ledFlags |= switch_state_down4 ? LED_GREEN : LED_RED;
+    switch_state_changed = 0;
+  }
+  P1OUT &= (0xff - LEDS) | ledFlags;
+  P1OUT |= ledFlags;
+  }//end main if
+  switch_state_changed = 0;
 }//end led_update
 
