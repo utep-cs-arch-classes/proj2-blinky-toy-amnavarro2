@@ -6,12 +6,19 @@ __interrupt_vec(WDT_VECTOR) WDT(){	/* 250 interrupts/sec */
   static char blink_count = 0;
   static int state_count = 0;
 
-  // change_states();
- if(++blink_count == 100){
-    change_states(); //all the leds are turned off and nothing happens when buttons are pressed.
+ 
+  if(++blink_count == 125){
+    //change_states(); //all the leds are turned off and nothing happens when buttons are pressed.
     //state_advance(); //blinks constantly
+    //switch_state_adv();
     blink_count = 0;
  }//end if
+
+
+
+
+
+
 
   
   //turns off all the leds and doesn't do anything else (tried to manually access the states by using the blink counts)
