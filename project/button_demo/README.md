@@ -14,14 +14,14 @@ command and then run the "make load" command while the msp430 is connected.
 Assuming you compiled and ran the code correctly, then you will notice that
 there are no led's turned on or buzzing noises, thats a good sign. Now then...
 
-_button1: When this button is pressed, both the green and red led should be
+__button1__: When this button is pressed, both the green and red led should be
 turned on, along with a high pitched buzzer sound.
 
-_button2: When this button is pressed, both led's should be dimmed by 75
+__button2__: When this button is pressed, both led's should be dimmed by 75
 percent and making a lower buzzing noise.
 
-_button3: When this button is pressed, both led's should be dimmed by 25
+__button3__: When this button is pressed, both led's should be dimmed by 25
 percent and making the lowest buzzing noise out of all of them.
 
-_button4: When this button is pressed, both led's should be turned off and the
+__button4__: When this button is pressed, both led's should be turned off and the
 buzzer should be turned off too.
