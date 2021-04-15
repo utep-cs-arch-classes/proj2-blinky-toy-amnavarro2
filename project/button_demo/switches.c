@@ -46,11 +46,11 @@ switch_interrupt_handler()
   if(p2val & SW4 ? 0 : 1){
     switch_state_adv(3);
   }
-  
+  led_update();
 
   
   //this works to press the buttons
-  /*  switch_state_down1 = (p2val & SW1) ? 0 : 1;
+  /*switch_state_down1 = (p2val & SW1) ? 0 : 1;
   switch_state_down2 = (p2val & SW2) ? 0 : 1;
   switch_state_down3 = (p2val & SW3) ? 0 : 1;
   switch_state_down4 = (p2val & SW4) ? 0 : 1;
@@ -58,22 +58,4 @@ switch_interrupt_handler()
   led_update();
   */
   
-  //this prevented me from accessing the buttons.
-  //switch_state_changed = 1;
-  //led_update();
-  /*
-  if(switch_state_down1){
-   state = 1;
-  }
-  if(switch_state_down2 = 0){
-    state = 2;
-  }
-  if(switch_state_down3 = 0){
-   state = 3;
-  }
-  if(switch_state_down4 = 0){
-    state = 4;
-  }
-  switch_state_changed = 1;
-  */
 }//end switch_interrupt_handler

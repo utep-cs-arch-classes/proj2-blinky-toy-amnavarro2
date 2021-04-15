@@ -56,7 +56,7 @@ void buzzer_off(){
 
 
 //Didn't work
-void sounds(){
+/*void sounds(){
   static char state = 0;
   float first_sound = 1960;
   float second_sound = 2200;
@@ -76,8 +76,9 @@ void sounds(){
     buzzer_set_period(0);
     break;
   }//end switch
-}//end method
 
+}//end method
+*/
     
     
   
