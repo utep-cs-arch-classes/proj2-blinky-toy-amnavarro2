@@ -1,28 +1,27 @@
 ## Description
-This program uses interrupts to detect when a switch is pressed or
-released.
+This purpose of this project is to be able to use all the buttons of the msp430
+on the LCD screen (green board). Also when each button is pressed all the
+led's are supposed to change or be dimmed and atleast on button should have a buzzer.
 
-Press S1, and the green LED is illuminated.  Release it, and the red
-LED is illuminated instead.
 
-## Exploration
-_LED toggle:_  A great initial project would be to modify this program to
-implement a state machine that "toggled" between the red and green LEDs
-each time the button is pressed. The LED should remain illuminated until
-the next time the button is pressed.
+## Running
+To run this, you must first access the button_demo folder and use the "make
+clean" command to make sure no other files are there. Then run the "make"
+command and then run the "make load" command while the msp430 is connected.
 
-_Separation of duties:_ Input and output are not always so closely
-connected.  Frequently an input begins a computation that eventually
-results in an output. For example, pressing "next song" on a streaming
-audio player begins a complicated multi-stage process that eventually
-results in a different song being played.  Suggestion: start with
-something simple such as responding to the buttons using interrupts to
-set state variables, and update the LEDs when the timer interrupt
-occurs.  
 
-_Time and button interaction:_
-Integrate the timer mechanisms from the blink demo and have the button affect the blink sequence.
+## How to use it
+Assuming you compiled and ran the code correctly, then you will notice that
+there are no led's turned on or buzzing noises, thats a good sign. Now then...
 
-## Some Advice
-When creating your own variants to the demo programs,
-it's probably a good idea to keep a copy of the original program (or really understand how _git checkout_ works).  
+_button1: When this button is pressed, both the green and red led should be
+turned on, along with a high pitched buzzer sound.
+
+_button2: When this button is pressed, both led's should be dimmed by 75
+percent and making a lower buzzing noise.
+
+_button3: When this button is pressed, both led's should be dimmed by 25
+percent and making the lowest buzzing noise out of all of them.
+
+_button4: When this button is pressed, both led's should be turned off and the
+buzzer should be turned off too.
