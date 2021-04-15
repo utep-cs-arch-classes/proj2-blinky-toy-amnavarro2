@@ -17,4 +17,5 @@ void switch_state_adv(int);
 
 void state_dimming();
 void change_states();
+
 #endif // included

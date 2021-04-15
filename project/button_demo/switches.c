@@ -49,7 +49,7 @@ switch_interrupt_handler()
   led_update();
 
   
-  //this works to press the buttons
+  //this works to press the buttons, use this if you want to see a basic pattern.
   /*switch_state_down1 = (p2val & SW1) ? 0 : 1;
   switch_state_down2 = (p2val & SW2) ? 0 : 1;
   switch_state_down3 = (p2val & SW3) ? 0 : 1;

@@ -22,7 +22,7 @@ char toggle_red()		/* always toggle! */
   }
   return 1;			/* always changes an led */
 }
-
+//turn on red only
 void toggle_red_on(){
   red_on =1;
 
@@ -31,6 +31,7 @@ void toggle_red_on(){
 
 }//end
 
+//turn off red only
 void toggle_red_off(){
   red_on = 0;
     
@@ -49,7 +50,7 @@ char toggle_green()	/* only toggle green if red is on!  */
   return changed;
 }
 
-
+//turn on green only
 void toggle_green_on(){
   green_on = 1;
 
@@ -57,7 +58,7 @@ void toggle_green_on(){
   led_update();
 }
 
-
+//turn off green only
 void toggle_green_off(){
   green_on = 0;
 
@@ -187,6 +188,7 @@ void green_dim_25(){
 }//end green_dim_25
 
 
+//This method gives instructions based on what button is pressed
 void switch_state_adv(int state){
   switch(state){
   case 0:
@@ -213,49 +215,4 @@ void switch_state_adv(int state){
   led_changed = 1;
   led_update();
 
-}//end switch_state
-
-
-
-/*
-//assign instructions for what happens in each state
-void state_dimming(){
-  
-  switch(bright_state){
-  case 0:
-    toggle_red_on();
-    toggle_green_on();
-    break;
-  case 1:
-    red_dim();
-    green_dim();
-    break;
-  case 2:
-    red_dim_25();
-    green_dim_25();
-    break;
-  case 3:
-    toggle_red_off();
-    toggle_green_off();
-  }//end switch
-}//end state_dimming
-
-//access the states from the method above each time we move states.
-void change_states(){
-  switch(bright_state){
-  case 0:
-    bright_state = 1;
-    break;
-  case 1:
-    bright_state = 2;
-    break;
-  case 2:
-    bright_state = 3;
-    break;
-  case 3:
-    bright_state = 0;
-    break;
-  }//end switch
-  led_update();
-}//end change_states
-*/
+}//end switch_state_adv

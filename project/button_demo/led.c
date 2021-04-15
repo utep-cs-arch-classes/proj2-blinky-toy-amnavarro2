@@ -48,10 +48,13 @@ void led_update(){
     }//end 1st if
 
 
-     
+  //this will only work if you uncomment the other commented in the switches file.
+  //Also there is no buzzer for this
+
+  
   if(switch_state_changed){
     char ledFlags = 0;
-    if(switch_state_down1){
+    if(switch_state_down1){ /* set for the first button*/
       ledFlags |= switch_state_down1 ? LED_GREEN : 0;
       ledFlags |= switch_state_down1 ? LED_RED : 0;
       switch_state_changed = 0;
@@ -59,7 +62,7 @@ void led_update(){
     // switch_state_changed = 0;
 
     
-  if(switch_state_down2){
+    if(switch_state_down2){ /* set for the second button*/
     ledFlags |= switch_state_down2 ? LED_RED : 0;
     ledFlags |= switch_state_down2 ? 0:0;
     switch_state_changed = 0;
@@ -67,13 +70,13 @@ void led_update(){
     //P1OUT |=ledFlags;
   }//end 2nd if
 
-  if(switch_state_down3){
+    if(switch_state_down3){ /*set for the third button*/
     ledFlags |= switch_state_down3 ? LED_GREEN: 0;
     ledFlags |= switch_state_down3 ? 0 : LED_RED;
     switch_state_changed = 0;
   }//end 3rd if
 
-  if(switch_state_down4){
+    if(switch_state_down4){ /*set for the fourth button*/
     ledFlags |= switch_state_down4 ? 0: 0;
     ledFlags |= switch_state_down4 ? LED_GREEN : LED_RED;
     switch_state_changed = 0;

@@ -10,7 +10,8 @@ __interrupt_vec(WDT_VECTOR) WDT(){	/* 250 interrupts/sec */
 
 
   
-  if(++blink_count == 1)
+  if(++blink_count == 1){
+    // function_assembly(); /* dimming doesn't work only the buzzer*/
     switch_interrupt_handler();
     blink_count = 0;
  }//end if
